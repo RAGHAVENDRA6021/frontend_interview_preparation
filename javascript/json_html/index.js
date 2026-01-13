@@ -50,3 +50,14 @@ const json = {
 console.log("hi");
 console.log(JSONtoHTML(json));
 document.getElementById("root").replaceChildren(JSONtoHTML(json));
+
+const fn = window.console.log;
+// window.console = {...fn,this.log=function(){}}
+window.console.log = function (...args) {
+  fn(...args, new Date().toISOString());
+  // return s + " hi";
+};
+
+console.log("hello");
+setTimeout(() => console.log("raghav"), 3000);
+console.log("raghav");
